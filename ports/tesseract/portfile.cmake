@@ -21,6 +21,8 @@ vcpkg_apply_patches(
         ${CMAKE_CURRENT_LIST_DIR}/leptonica.patch
 )
 
+set(ENV{PKG_CONFIG_PATH} "${CURRENT_PACKAGES_DIR}/lib/pkgconfig")
+
 # The built-in cmake FindICU is better
 file(REMOVE ${SOURCE_PATH}/cmake/FindICU.cmake)
 
