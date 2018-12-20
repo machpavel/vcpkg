@@ -30,10 +30,10 @@ vcpkg_copy_pdbs()
 
 if(NOT DISABLE_PKGCONFIG)
   file(COPY ${CURRENT_PACKAGES_DIR}/lib/pkgconfig/lept.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+  file(COPY ${CURRENT_PACKAGES_DIR}/debug/lib/pkgconfig/lept.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/debug/pkgconfig)
 endif()
 
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/lib/pkgconfig)
 
 # Handle copyright
 file(COPY ${SOURCE_PATH}/leptonica-license.txt DESTINATION ${CURRENT_PACKAGES_DIR}/share/leptonica)
