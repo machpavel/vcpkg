@@ -29,7 +29,7 @@ vcpkg_fixup_cmake_targets(CONFIG_PATH "cmake")
 vcpkg_copy_pdbs()
 
 if(NOT DISABLE_PKGCONFIG)
-  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lept.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+  file(COPY ${CMAKE_CURRENT_BINARY_DIR}/lept.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 endif()
 
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
