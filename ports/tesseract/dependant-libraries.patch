@@ -1,0 +1,45 @@
+From e499d5e9a68c54f835f28045696a506147ef1bd3 Mon Sep 17 00:00:00 2001
+From: Pavel Mach <pavel.mach@blindspot.ai>
+Date: Thu, 27 Dec 2018 12:28:04 +0100
+Subject: [PATCH] Image loading and saving libraries made dependent on
+ Tesseract.
+
+---
+ CMakeLists.txt | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 25ded3c2..43ffbe4e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -70,6 +70,18 @@ endif()
+ 
+ find_package(OpenCL QUIET)
+ 
++find_package(GIF)
++find_package(JPEG)
++find_package(PNG)
++find_package(TIFF)
++find_package(ZLIB)
++
++find_package(PkgConfig)
++pkg_check_modules(WEBP libwebp)
++if (WEBP_FOUND)
++    set(WEBP_LIBRARIES "-lwebp")
++endif ()
++
+ option(BUILD_TRAINING_TOOLS "Build training tools" ON)
+ 
+ ###############################################################################
+@@ -228,7 +240,7 @@ set_target_properties           (libtesseract PROPERTIES DEBUG_OUTPUT_NAME tesse
+ endif()
+ 
+ if (NOT CPPAN_BUILD)
+-    target_link_libraries       (libtesseract ${Leptonica_LIBRARIES})
++    target_link_libraries       (libtesseract ${Leptonica_LIBRARIES} PNG::PNG ${JPEG_LIBRARIES} TIFF::TIFF ZLIB::ZLIB ${WEBP_LIBRARIES})
+     export(TARGETS libtesseract FILE ${CMAKE_BINARY_DIR}/TesseractTargets.cmake)
+ else()
+     target_link_libraries       (libtesseract pvt.cppan.demo.danbloomberg.leptonica)
+-- 
+2.19.2.windows.1
+
