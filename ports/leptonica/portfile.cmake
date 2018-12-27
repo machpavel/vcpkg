@@ -20,6 +20,7 @@ vcpkg_configure_cmake(
     OPTIONS
         -DSTATIC=${STATIC}
         -DCMAKE_REQUIRED_INCLUDES=${CURRENT_INSTALLED_DIR}/include # for check_include_file()
+        -DPKG_CONFIG_USE_CMAKE_PREFIX_PATH=True
 )
 
 vcpkg_install_cmake()
